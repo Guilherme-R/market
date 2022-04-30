@@ -6,7 +6,7 @@ import java.util.HashSet;
 import java.util.Set;
 
 public class Category implements Serializable {
-    private static final long serialVersionUID = 1l;
+    private static final long serialVersionUID = 1L;
 
     private Long id;
     private String name;

@@ -1,25 +1,31 @@
 package com.guilhermebrandao.service;
 
-import com.guilhermebrandao.dao.ClientDao;
+import com.guilhermebrandao.dao.ClientDAO;
+import com.guilhermebrandao.domain.Client;
+import com.guilhermebrandao.service.exception.ObjectNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
-@RestController
-@RequestMapping(path = "/client")
+@Service
 public class ClientService {
 
-    private final ClientDao clientDao;
+    private final ClientDAO clientDao;
 
     @Autowired
-    public ClientService(ClientDao clientDao){
+    public ClientService(ClientDAO clientDao){
         this.clientDao = clientDao;
     }
 
-    public List findAll() {
+
+    public List<Client> findAll() {
         return clientDao.findAll();
+    }
+
+    public Client findById(Long id) {
+        Optional optional = clientDao.findById(id);
+        return (Client) optional.get();
     }
 }

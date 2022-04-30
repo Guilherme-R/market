@@ -6,7 +6,7 @@ import java.util.HashSet;
 import java.util.Set;
 
 public class Client implements Serializable {
-    private static final long serialVersionUID = 1l;
+    private static final long serialVersionUID = 1L;
 
     private Long id;
     private String name;
@@ -67,12 +67,12 @@ public class Client implements Serializable {
         this.password = password;
     }
 
-    public Set<Order> getCategories() {
+    public Set<Order> getOrders() {
         return orders;
     }
 
-    public void addCategories(Order ...orders) {
-        getCategories().addAll(Arrays.asList(orders));
+    public void addOrders(Order ...orders) {
+        getOrders().addAll(Arrays.asList(orders));
     }
 
 }
