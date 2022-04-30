@@ -1,0 +1,14 @@
+version: '3.7'
+services:
+  db:
+    image: mysql
+    container_name: market
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+    ports:
+      - "3306:3306"
+    volumes:
+      - market_data:/var/lib/mysql
+
+volumes:
+  market_data:
