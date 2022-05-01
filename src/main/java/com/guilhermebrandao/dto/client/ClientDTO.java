@@ -1,4 +1,4 @@
-package com.guilhermebrandao.dto;
+package com.guilhermebrandao.dto.client;
 
 import com.guilhermebrandao.domain.Client;
 import com.guilhermebrandao.domain.Order;
