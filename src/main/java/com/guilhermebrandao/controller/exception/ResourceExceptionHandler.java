@@ -1,6 +1,6 @@
 package com.guilhermebrandao.controller.exception;
 
-import com.guilhermebrandao.service.exception.PasswordNotValid;
+import com.guilhermebrandao.service.exception.InvalidPassword;
 import com.guilhermebrandao.service.exception.ObjectNotFoundException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -25,10 +25,9 @@ public class ResourceExceptionHandler {
         return ResponseEntity.status(status).body(error);
     }
 
-    //TODO Verificar Status HTTP correto para essa exceção
-    @ExceptionHandler(PasswordNotValid.class)
-    public ResponseEntity<StandardError> objectNotFound(PasswordNotValid exception, HttpServletRequest request){
-        HttpStatus status = HttpStatus.NOT_FOUND;
+    @ExceptionHandler(InvalidPassword.class)
+    public ResponseEntity<StandardError> invalidPassword(InvalidPassword exception, HttpServletRequest request){
+        HttpStatus status = HttpStatus.BAD_REQUEST;
         StandardError error = new StandardError(
                 System.currentTimeMillis(),
                 status.value(),

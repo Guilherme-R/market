@@ -2,7 +2,8 @@ package com.guilhermebrandao.service;
 
 import com.guilhermebrandao.dao.client.ClientDaoImpl;
 import com.guilhermebrandao.domain.Client;
-import com.guilhermebrandao.dto.client.ClientUpdateDTO;
+import com.guilhermebrandao.dto.client.ClientUpdatePasswordDTO;
+import com.guilhermebrandao.infra.security.PasswordValidator;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -27,6 +28,7 @@ public class ClientService {
     }
 
     public void insert(Client client) {
+        PasswordValidator.validateClientPassword(client.getPassword());
         clientDaoImpl.insert(client);
     }
 
@@ -40,13 +42,9 @@ public class ClientService {
         clientDaoImpl.delete(id);
     }
 
-    public void updatePassword(ClientUpdateDTO clientUpdateDto) {
-        Client client = findById(clientUpdateDto.getId());
-        if (clientUpdateDto.getOldPassword() == client.getPassword()) {
-            clientDaoImpl.updatePassword(clientUpdateDto.getNewPassword());
-        } else {
-            //TODO Criar Exceção personalizada
-            throw new RuntimeException("");
-        }
+    public void updatePassword(ClientUpdatePasswordDTO clientUpdatePasswordDto) {
+        PasswordValidator.validateNewClientPassword(clientUpdatePasswordDto);
+        clientDaoImpl.updatePassword(clientUpdatePasswordDto);
     }
+
 }

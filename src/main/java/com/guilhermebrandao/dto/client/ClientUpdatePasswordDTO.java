@@ -1,16 +1,18 @@
 package com.guilhermebrandao.dto.client;
 
-public class ClientUpdateDTO {
+import com.guilhermebrandao.domain.Client;
+
+public class ClientUpdatePasswordDTO {
 
     private Long id;
     private String oldPassword;
     private String newPassword;
 
-    public ClientUpdateDTO(){
+    public ClientUpdatePasswordDTO(){
     }
 
-    public ClientUpdateDTO(Long idClient, String oldPassword, String newPassword) {
-        this.id = idClient;
+    public ClientUpdatePasswordDTO(Client client) {
+        this.id = client.getId();
         this.oldPassword = oldPassword;
         this.newPassword = newPassword;
     }

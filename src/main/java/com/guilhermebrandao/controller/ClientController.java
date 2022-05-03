@@ -2,7 +2,7 @@ package com.guilhermebrandao.controller;
 
 import com.guilhermebrandao.domain.Client;
 import com.guilhermebrandao.dto.client.ClientDTO;
-import com.guilhermebrandao.dto.client.ClientUpdateDTO;
+import com.guilhermebrandao.dto.client.ClientUpdatePasswordDTO;
 import com.guilhermebrandao.service.ClientService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -53,10 +53,9 @@ public class ClientController {
         return ResponseEntity.noContent().build();
     }
 
-    //TODO Arrumar a URL
-    @PutMapping(path = "/p")
-    public ResponseEntity<Void> updatePassword(@RequestBody ClientUpdateDTO clientUpdateDto) {
-        clientService.updatePassword(clientUpdateDto);
+    @PutMapping(path = "/password")
+    public ResponseEntity<Void> updatePassword(@RequestBody ClientUpdatePasswordDTO clientUpdatePasswordDto) {
+        clientService.updatePassword(clientUpdatePasswordDto);
         return ResponseEntity.noContent().build();
     }
 }

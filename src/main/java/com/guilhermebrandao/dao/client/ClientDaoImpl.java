@@ -1,6 +1,7 @@
 package com.guilhermebrandao.dao.client;
 
 import com.guilhermebrandao.domain.Client;
+import com.guilhermebrandao.dto.client.ClientUpdatePasswordDTO;
 import com.guilhermebrandao.service.exception.ObjectNotFoundException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -26,6 +27,7 @@ public class ClientDaoImpl implements ClientDao {
         client.setName(rs.getString("NAME"));
         client.setEmail(rs.getString("EMAIL"));
         client.setPhone(rs.getString("PHONE"));
+        client.setPassword(rs.getString("PASSWORD"));
         return client;
     };
 
@@ -36,7 +38,7 @@ public class ClientDaoImpl implements ClientDao {
 
     @Override
     public Optional findById(Long id) {
-        String sql = "SELECT ID_CLIENT, NAME, EMAIL, PHONE FROM TR_CLIENT WHERE ID_CLIENT = ?";
+        String sql = "SELECT * FROM TR_CLIENT WHERE ID_CLIENT = ?";
         Client client = null;
         try {
             client = jdbcTemplate.queryForObject(sql, new Object[]{id}, new int[]{Types.INTEGER}, rowMapper);
@@ -48,7 +50,7 @@ public class ClientDaoImpl implements ClientDao {
 
     @Override
     public List<Client> findAll() {
-        String sql = "SELECT ID_CLIENT, NAME, EMAIL, PHONE FROM TR_CLIENT";
+        String sql = "SELECT * FROM TR_CLIENT";
         return jdbcTemplate.query(sql, rowMapper);
     }
 
@@ -73,8 +75,9 @@ public class ClientDaoImpl implements ClientDao {
     }
 
     @Override
-    public void updatePassword(String newPassword) {
-        String sql = "UPDATE TR_CLIENT SET PASSWORD = ? WHERE = ?";
-        jdbcTemplate.update(sql, newPassword);
+    public void updatePassword(Object obj) {
+        String sql = "UPDATE TR_CLIENT SET PASSWORD = ? WHERE ID_CLIENT = ?";
+        ClientUpdatePasswordDTO clientUpdatePasswordDTO = (ClientUpdatePasswordDTO) obj;
+        jdbcTemplate.update(sql, clientUpdatePasswordDTO.getNewPassword(), clientUpdatePasswordDTO.getId());
     }
 }

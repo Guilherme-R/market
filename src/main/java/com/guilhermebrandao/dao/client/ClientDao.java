@@ -2,8 +2,7 @@ package com.guilhermebrandao.dao.client;
 
 import com.guilhermebrandao.dao.DAO;
 
-public interface ClientDao extends DAO {
+public interface ClientDao<T> extends DAO {
 
-    void updatePassword(String newPassword);
-
+    void updatePassword(T t);
 }
