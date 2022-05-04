@@ -1,8 +1,8 @@
 package com.guilhermebrandao.controller;
 
-import com.guilhermebrandao.domain.Client;
-import com.guilhermebrandao.dto.client.ClientDTO;
-import com.guilhermebrandao.dto.client.ClientUpdatePasswordDTO;
+import com.guilhermebrandao.request.ClientGetRequestBody;
+import com.guilhermebrandao.request.ClientPostRequestBody;
+import com.guilhermebrandao.request.ClientPutRequestBody;
 import com.guilhermebrandao.service.ClientService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -22,28 +22,25 @@ public class ClientController {
         this.clientService = clientService;
     }
 
-
     @GetMapping(path = "/")
-    public ResponseEntity<List<ClientDTO>> findAll(){
-        List<ClientDTO> clientsDTO = clientService.findAll().stream().map(a -> new ClientDTO(a)).collect(Collectors.toList());
-        return ResponseEntity.ok().body(clientsDTO);
+    public ResponseEntity<List<ClientGetRequestBody>> findAll(){
+        return ResponseEntity.ok().body(clientService.findAll());
     }
 
     @GetMapping(path = "/{id}")
-    public ResponseEntity<ClientDTO> findById(@PathVariable Long id){
-        ClientDTO clientDTO = new ClientDTO(clientService.findById(id));
-        return ResponseEntity.ok().body(clientDTO);
+    public ResponseEntity<ClientGetRequestBody> findById(@PathVariable Long id){
+        return ResponseEntity.ok().body(clientService.findById(id));
     }
 
     @PostMapping(path = "/")
-    public ResponseEntity<Void> insert(@RequestBody Client client){
-        clientService.insert(client);
+    public ResponseEntity<Void> insert(@RequestBody ClientPostRequestBody clientPostRequestBody){
+        clientService.insert(clientPostRequestBody);
         return ResponseEntity.noContent().build();
     }
 
     @PutMapping(path = "/")
-    public ResponseEntity<Void> update(@RequestBody Client client) {
-        clientService.update(client);
+    public ResponseEntity<Void> update(@RequestBody ClientPutRequestBody clientPutRequestBody) {
+        clientService.update(clientPutRequestBody);
         return ResponseEntity.noContent().build();
     }
 
@@ -54,8 +51,8 @@ public class ClientController {
     }
 
     @PutMapping(path = "/password")
-    public ResponseEntity<Void> updatePassword(@RequestBody ClientUpdatePasswordDTO clientUpdatePasswordDto) {
-        clientService.updatePassword(clientUpdatePasswordDto);
+    public ResponseEntity<Void> updatePassword(@RequestBody ClientPutRequestBody clientPutRequestBody) {
+        clientService.updatePassword(clientPutRequestBody);
         return ResponseEntity.noContent().build();
     }
 }

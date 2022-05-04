@@ -2,7 +2,7 @@ package com.guilhermebrandao.infra.security;
 
 import com.guilhermebrandao.dao.client.ClientDaoImpl;
 import com.guilhermebrandao.domain.Client;
-import com.guilhermebrandao.dto.client.ClientUpdatePasswordDTO;
+import com.guilhermebrandao.request.ClientPutRequestBody;
 import com.guilhermebrandao.service.exception.InvalidPassword;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -26,9 +26,9 @@ public class PasswordValidator {
         }
     }
 
-    public static boolean validateNewClientPassword(ClientUpdatePasswordDTO clientUpdatePasswordDto){
-        if(validateClientPassword(clientUpdatePasswordDto.getNewPassword()) &&
-                validateOldClientPassword(clientUpdatePasswordDto.getOldPassword(), clientUpdatePasswordDto.getId())){
+    public static boolean validateNewClientPassword(ClientPutRequestBody clientPutRequestBody){
+        if(validateClientPassword(clientPutRequestBody.getNewPassword()) &&
+                validateOldClientPassword(clientPutRequestBody.getOldPassword(), clientPutRequestBody.getId())){
             return true;
         }else {
             return false;

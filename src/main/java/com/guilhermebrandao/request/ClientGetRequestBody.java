@@ -1,37 +1,36 @@
-package com.guilhermebrandao.dto.client;
+package com.guilhermebrandao.request;
 
-import com.guilhermebrandao.domain.Client;
 import com.guilhermebrandao.domain.Order;
 
 import java.util.HashSet;
 import java.util.Set;
 
-public class ClientDTO {
+public class ClientGetRequestBody {
 
-    private Long idClient;
+    private Long id;
     private String name;
     private String email;
     private String phone;
 
     private Set<Order> orders = new HashSet<>();
 
-    public ClientDTO(){
+    public ClientGetRequestBody() {
     }
 
-    public ClientDTO(Client client){
-        this.idClient = client.getId();
-        this.name = client.getName();
-        this.email = client.getEmail();
-        this.phone = client.getPhone();
-        this.orders = client.getOrders();
+    public ClientGetRequestBody(Long id, String name, String email, String phone, Set<Order> orders) {
+        this.id = id;
+        this.name = name;
+        this.email = email;
+        this.phone = phone;
+        this.orders = orders;
     }
 
-    public Long getIdClient() {
-        return idClient;
+    public Long getId() {
+        return id;
     }
 
-    public void setIdClient(Long idClient) {
-        this.idClient = idClient;
+    public void setId(Long id) {
+        this.id = id;
     }
 
     public String getName() {

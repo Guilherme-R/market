@@ -1,7 +1,7 @@
 package com.guilhermebrandao.dao.client;
 
 import com.guilhermebrandao.domain.Client;
-import com.guilhermebrandao.dto.client.ClientUpdatePasswordDTO;
+import com.guilhermebrandao.request.ClientPutRequestBody;
 import com.guilhermebrandao.service.exception.ObjectNotFoundException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -77,7 +77,7 @@ public class ClientDaoImpl implements ClientDao {
     @Override
     public void updatePassword(Object obj) {
         String sql = "UPDATE TR_CLIENT SET PASSWORD = ? WHERE ID_CLIENT = ?";
-        ClientUpdatePasswordDTO clientUpdatePasswordDTO = (ClientUpdatePasswordDTO) obj;
-        jdbcTemplate.update(sql, clientUpdatePasswordDTO.getNewPassword(), clientUpdatePasswordDTO.getId());
+        ClientPutRequestBody clientPutRequestBody = (ClientPutRequestBody) obj;
+        jdbcTemplate.update(sql, clientPutRequestBody.getNewPassword(), clientPutRequestBody.getId());
     }
 }
