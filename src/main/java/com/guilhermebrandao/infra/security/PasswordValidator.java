@@ -18,21 +18,13 @@ public class PasswordValidator {
     }
 
     public static boolean validateClientPassword(String password){
-        if(lowerCase(password) && uppperCase(password) &&  Numbers(password)
-                && especialChar(password) && passwordSize(password, 8, 30)){
-            return true;
-        }else {
-            return false;
-        }
+        return lowerCase(password) && uppperCase(password) &&  Numbers(password)
+                && especialChar(password) && passwordSize(password, 8, 30);
     }
 
     public static boolean validateNewClientPassword(ClientPutRequestBody clientPutRequestBody){
-        if(validateClientPassword(clientPutRequestBody.getNewPassword()) &&
-                validateOldClientPassword(clientPutRequestBody.getOldPassword(), clientPutRequestBody.getId())){
-            return true;
-        }else {
-            return false;
-        }
+        return validateClientPassword(clientPutRequestBody.getNewPassword())
+                && validateOldClientPassword(clientPutRequestBody.getOldPassword(), clientPutRequestBody.getId());
     }
 
     private static boolean lowerCase(String password){
