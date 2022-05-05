@@ -1,26 +1,25 @@
-package com.guilhermebrandao.domain;
+package com.guilhermebrandao.response;
 
 import com.guilhermebrandao.domain.enums.OrderStatus;
 
-import java.io.Serializable;
 import java.time.LocalDateTime;
 
-public class Order implements Serializable {
-    private static final long serialVersionUID = 1L;
+public class OrderResponse {
 
     private Long id;
     private LocalDateTime moment;
     private OrderStatus orderStatus;
 
-    private Client client;
+    private ClientResponse client;
 
-    public Order() {
+    public OrderResponse() {
     }
 
-    public Order(Long id, LocalDateTime moment, OrderStatus orderStatus) {
+    public OrderResponse(Long id, LocalDateTime moment, OrderStatus orderStatus, ClientResponse client) {
         this.id = id;
         this.moment = moment;
         this.orderStatus = orderStatus;
+        this.client = client;
     }
 
     public Long getId() {
@@ -47,11 +46,11 @@ public class Order implements Serializable {
         this.orderStatus = orderStatus;
     }
 
-    public Client getClient() {
+    public ClientResponse getClient() {
         return client;
     }
 
-    public void setClient(Client client) {
+    public void setClient(ClientResponse client) {
         this.client = client;
     }
 }

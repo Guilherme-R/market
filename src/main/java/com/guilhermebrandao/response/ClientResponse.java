@@ -1,23 +1,21 @@
-package com.guilhermebrandao.request;
-
-import com.guilhermebrandao.domain.Order;
+package com.guilhermebrandao.response;
 
 import java.util.HashSet;
 import java.util.Set;
 
-public class ClientGetRequestBody {
+public class ClientResponse {
 
     private Long id;
     private String name;
     private String email;
     private String phone;
 
-    private Set<Order> orders = new HashSet<>();
+    private Set<OrderResponse> orders = new HashSet<>();
 
-    public ClientGetRequestBody() {
+    public ClientResponse() {
     }
 
-    public ClientGetRequestBody(Long id, String name, String email, String phone, Set<Order> orders) {
+    public ClientResponse(Long id, String name, String email, String phone, Set<OrderResponse> orders) {
         this.id = id;
         this.name = name;
         this.email = email;
@@ -57,7 +55,7 @@ public class ClientGetRequestBody {
         this.phone = phone;
     }
 
-    public Set<Order> getOrders() {
+    public Set<OrderResponse> getOrders() {
         return orders;
     }
 }

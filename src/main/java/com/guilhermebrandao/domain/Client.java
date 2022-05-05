@@ -3,6 +3,7 @@ package com.guilhermebrandao.domain;
 import java.io.Serializable;
 import java.util.Arrays;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 public class Client implements Serializable {
@@ -71,8 +72,8 @@ public class Client implements Serializable {
         return orders;
     }
 
-    public void addOrders(Order ...orders) {
-        getOrders().addAll(Arrays.asList(orders));
+    public void addOrders(List<Order> orders) {
+        getOrders().addAll(orders);
     }
 
 }

@@ -1,15 +1,15 @@
 package com.guilhermebrandao.controller;
 
-import com.guilhermebrandao.request.ClientGetRequestBody;
+import com.guilhermebrandao.response.ClientResponse;
 import com.guilhermebrandao.request.ClientPostRequestBody;
 import com.guilhermebrandao.request.ClientPutRequestBody;
+import com.guilhermebrandao.response.OrderResponse;
 import com.guilhermebrandao.service.ClientService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping(path = "/clients")
@@ -23,12 +23,12 @@ public class ClientController {
     }
 
     @GetMapping(path = "/")
-    public ResponseEntity<List<ClientGetRequestBody>> findAll(){
+    public ResponseEntity<List<ClientResponse>> findAll(){
         return ResponseEntity.ok().body(clientService.findAll());
     }
 
     @GetMapping(path = "/{id}")
-    public ResponseEntity<ClientGetRequestBody> findById(@PathVariable Long id){
+    public ResponseEntity<ClientResponse> findById(@PathVariable Long id){
         return ResponseEntity.ok().body(clientService.findById(id));
     }
 

@@ -1,7 +1,7 @@
 package com.guilhermebrandao.mapper;
 
 import com.guilhermebrandao.domain.Client;
-import com.guilhermebrandao.request.ClientGetRequestBody;
+import com.guilhermebrandao.response.ClientResponse;
 import com.guilhermebrandao.request.ClientPostRequestBody;
 import com.guilhermebrandao.request.ClientPutRequestBody;
 import org.mapstruct.Mapper;
@@ -13,5 +13,7 @@ public interface ClientMapper {
 
     Client toClient(ClientPutRequestBody clientPutRequestBody);
     Client toClient(ClientPostRequestBody clientPostRequestBody);
-    ClientGetRequestBody toClientGetRequestBody(Client client);
+
+    Client toClient(ClientResponse clientResponse);
+    ClientResponse toClientResponse(Client client);
 }

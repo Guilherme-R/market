@@ -5,7 +5,6 @@ VALUES
     ('Books'),
     ('Computers');
 
-
 INSERT INTO `TR_PRODUCT`
     (`NAME`, `DESCRIPTION`, `PRICE`)
 VALUES
@@ -24,14 +23,14 @@ VALUES
 INSERT INTO `TR_ORDER`
 	(`MOMENT`, `ORDER_STATUS`, `CLIENT_ID`)
 VALUES
-	('2019-06-20', 2, 1),
-    ('2019-07-21', 1, 2),
-    ('2019-07-22', 1, 1);
+	('2019-06-20 19:53:07', 2, 1),
+    ('2019-07-21 03:42:10', 1, 2),
+    ('2019-07-22 15:21:22', 1, 1);
 
 INSERT INTO `TR_PAYMENT`
 	(`MOMENT`, `ORDER_ID`)
 VALUES
-	('2019-06-20', 1);
+	('2019-06-20 13:02:55', 1);
 
 INSERT INTO `TR_ORDER_ITEM`
 	(`QUANTITY`, `PRICE`, `PRODUCT_ID`, `ORDER_ID`)
@@ -40,4 +39,3 @@ VALUES
     (1, 1250.0, 3, 1),
     (2, 1250.0, 3, 2),
     (2, 100.99, 4, 3);
-

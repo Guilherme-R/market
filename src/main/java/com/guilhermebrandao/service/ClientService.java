@@ -1,10 +1,11 @@
 package com.guilhermebrandao.service;
 
 import com.guilhermebrandao.dao.client.ClientDaoImpl;
+import com.guilhermebrandao.dao.order.OrderDaoImpl;
 import com.guilhermebrandao.domain.Client;
 import com.guilhermebrandao.infra.security.PasswordValidator;
 import com.guilhermebrandao.mapper.ClientMapper;
-import com.guilhermebrandao.request.ClientGetRequestBody;
+import com.guilhermebrandao.response.ClientResponse;
 import com.guilhermebrandao.request.ClientPostRequestBody;
 import com.guilhermebrandao.request.ClientPutRequestBody;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,22 +18,26 @@ import java.util.stream.Collectors;
 public class ClientService {
 
     private final ClientDaoImpl clientDaoImpl;
+    private final OrderDaoImpl orderDaoImpl;
+
     private final ClientMapper clientMapper;
 
     @Autowired
-    public ClientService(ClientDaoImpl clientDaoImpl, ClientMapper clientMapper){
+    public ClientService(ClientDaoImpl clientDaoImpl, ClientMapper clientMapper, OrderDaoImpl orderDaoImpl){
         this.clientDaoImpl = clientDaoImpl;
         this.clientMapper = clientMapper;
+        this.orderDaoImpl = orderDaoImpl;
     }
 
-    public List<ClientGetRequestBody> findAll() {
+    public List<ClientResponse> findAll() {
         return clientDaoImpl.findAll().stream().map(client ->
-                clientMapper.toClientGetRequestBody(client)).collect(Collectors.toList());
+                clientMapper.toClientResponse(client)).collect(Collectors.toList());
     }
 
-    public ClientGetRequestBody findById(Long id) {
+    public ClientResponse findById(Long id) {
         Client client = (Client) clientDaoImpl.findById(id).get();
-        return clientMapper.toClientGetRequestBody(client);
+        client.addOrders(orderDaoImpl.findAllByClientId(id));
+        return clientMapper.toClientResponse(client);
     }
 
     public void insert(ClientPostRequestBody clientPostRequestBody) {
