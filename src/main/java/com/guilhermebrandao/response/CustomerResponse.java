@@ -1,31 +1,26 @@
-package com.guilhermebrandao.domain;
+package com.guilhermebrandao.response;
 
-import java.io.Serializable;
-import java.util.Arrays;
 import java.util.HashSet;
-import java.util.List;
 import java.util.Set;
 
-public class Client implements Serializable {
-    private static final long serialVersionUID = 1L;
+public class CustomerResponse {
 
     private Long id;
     private String name;
     private String email;
     private String phone;
-    private String password;
 
-    private Set<Order> orders = new HashSet<>();
+    private Set<OrderResponse> orders = new HashSet<>();
 
-    public Client() {
+    public CustomerResponse() {
     }
 
-    public Client(Long id, String name, String email, String phone, String password) {
+    public CustomerResponse(Long id, String name, String email, String phone, Set<OrderResponse> orders) {
         this.id = id;
         this.name = name;
         this.email = email;
         this.phone = phone;
-        this.password = password;
+        this.orders = orders;
     }
 
     public Long getId() {
@@ -60,20 +55,7 @@ public class Client implements Serializable {
         this.phone = phone;
     }
 
-    public String getPassword() {
-        return password;
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
-    }
-
-    public Set<Order> getOrders() {
+    public Set<OrderResponse> getOrders() {
         return orders;
     }
-
-    public void addOrders(List<Order> orders) {
-        getOrders().addAll(orders);
-    }
-
 }

@@ -39,9 +39,9 @@ public class OrderDaoImpl implements OrderDao{
     }
 
     @Override
-    public List<Order> findAllByClientId(Long clientId) {
-        String sql = "SELECT * FROM TR_ORDER WHERE CLIENT_ID = ?";
-        return  jdbcTemplate.query(sql, rowMapper, clientId);
+    public List<Order> findAllByCustomerId(Long customerId) {
+        String sql = "SELECT * FROM TR_ORDER WHERE CUSTOMER_ID = ?";
+        return  jdbcTemplate.query(sql, rowMapper, customerId);
     }
 
     @Override

@@ -1,8 +1,8 @@
 package com.guilhermebrandao.infra.security;
 
-import com.guilhermebrandao.dao.client.ClientDaoImpl;
-import com.guilhermebrandao.domain.Client;
-import com.guilhermebrandao.request.ClientPutRequestBody;
+import com.guilhermebrandao.dao.customer.CustomerDaoImpl;
+import com.guilhermebrandao.domain.Customer;
+import com.guilhermebrandao.request.CustomerPutRequestBody;
 import com.guilhermebrandao.service.exception.InvalidPassword;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -10,21 +10,21 @@ import org.springframework.stereotype.Component;
 @Component
 public class PasswordValidator {
 
-    private static ClientDaoImpl clientDaoImpl;
+    private static CustomerDaoImpl customerDaoImpl;
 
     @Autowired
-    public PasswordValidator(ClientDaoImpl clientDaoImpl){
-        this.clientDaoImpl = clientDaoImpl;
+    public PasswordValidator(CustomerDaoImpl customerDaoImpl){
+        this.customerDaoImpl = customerDaoImpl;
     }
 
-    public static boolean validateClientPassword(String password){
+    public static boolean validateCustomerPassword(String password){
         return lowerCase(password) && uppperCase(password) &&  Numbers(password)
                 && especialChar(password) && passwordSize(password, 8, 30);
     }
 
-    public static boolean validateNewClientPassword(ClientPutRequestBody clientPutRequestBody){
-        return validateClientPassword(clientPutRequestBody.getNewPassword())
-                && validateOldClientPassword(clientPutRequestBody.getOldPassword(), clientPutRequestBody.getId());
+    public static boolean validateNewCustomerPassword(CustomerPutRequestBody customerPutRequestBody){
+        return validateCustomerPassword(customerPutRequestBody.getNewPassword())
+                && validateOldClientPassword(customerPutRequestBody.getOldPassword(), customerPutRequestBody.getId());
     }
 
     private static boolean lowerCase(String password){
@@ -68,8 +68,8 @@ public class PasswordValidator {
     }
 
     private static boolean validateOldClientPassword(String oldPassword, Long clientId) {
-        Client client = (Client) clientDaoImpl.findById(clientId).get();
-        if (oldPassword.equals(client.getPassword())) {
+        Customer customer = (Customer) customerDaoImpl.findById(clientId).get();
+        if (oldPassword.equals(customer.getPassword())) {
             return true;
         } else {
             throw new InvalidPassword("Senha Inválida! A senha antiga está incorreta");

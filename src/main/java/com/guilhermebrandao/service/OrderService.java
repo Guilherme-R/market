@@ -3,9 +3,6 @@ package com.guilhermebrandao.service;
 import com.guilhermebrandao.dao.order.OrderDaoImpl;
 import com.guilhermebrandao.domain.Order;
 import com.guilhermebrandao.mapper.OrderMapper;
-import com.guilhermebrandao.response.ClientResponse;
-import com.guilhermebrandao.request.ClientPostRequestBody;
-import com.guilhermebrandao.request.ClientPutRequestBody;
 import com.guilhermebrandao.response.OrderResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -35,7 +32,7 @@ public class OrderService {
     }
 
     public List<OrderResponse> findAllByClientId(Long clientId){
-        List<Order> orders = orderDaoImpl.findAllByClientId(clientId);
+        List<Order> orders = orderDaoImpl.findAllByCustomerId(clientId);
         return orders.stream().map(order -> orderMapper.toOrderResponse(order)).collect(Collectors.toList());
     }
 

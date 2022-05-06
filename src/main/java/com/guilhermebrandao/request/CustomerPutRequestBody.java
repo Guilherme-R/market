@@ -1,6 +1,6 @@
 package com.guilhermebrandao.request;
 
-public class ClientPutRequestBody {
+public class CustomerPutRequestBody {
 
     private Long id;
     private String name;
@@ -9,10 +9,10 @@ public class ClientPutRequestBody {
     private String oldPassword;
     private String newPassword;
 
-    public ClientPutRequestBody() {
+    public CustomerPutRequestBody() {
     }
 
-    public ClientPutRequestBody(Long id, String name, String email, String phone, String oldPassword, String newPassword) {
+    public CustomerPutRequestBody(Long id, String name, String email, String phone, String oldPassword, String newPassword) {
         this.id = id;
         this.name = name;
         this.email = email;

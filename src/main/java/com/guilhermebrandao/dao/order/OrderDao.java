@@ -6,5 +6,5 @@ import java.util.List;
 
 public interface OrderDao<T> extends DAO {
 
-    List<T> findAllByClientId(Long clientId);
+    List<T> findAllByCustomerId(Long customerId);
 }

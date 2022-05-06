@@ -1,34 +1,20 @@
-package com.guilhermebrandao.response;
+package com.guilhermebrandao.request;
 
-import java.util.HashSet;
-import java.util.Set;
+public class CustomerPostRequestBody {
 
-public class ClientResponse {
-
-    private Long id;
     private String name;
     private String email;
     private String phone;
+    private String password;
 
-    private Set<OrderResponse> orders = new HashSet<>();
-
-    public ClientResponse() {
+    public CustomerPostRequestBody() {
     }
 
-    public ClientResponse(Long id, String name, String email, String phone, Set<OrderResponse> orders) {
-        this.id = id;
+    public CustomerPostRequestBody(String name, String email, String phone, String password) {
         this.name = name;
         this.email = email;
         this.phone = phone;
-        this.orders = orders;
-    }
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
+        this.password = password;
     }
 
     public String getName() {
@@ -55,7 +41,11 @@ public class ClientResponse {
         this.phone = phone;
     }
 
-    public Set<OrderResponse> getOrders() {
-        return orders;
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
     }
 }

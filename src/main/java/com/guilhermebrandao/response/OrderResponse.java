@@ -10,16 +10,16 @@ public class OrderResponse {
     private LocalDateTime moment;
     private OrderStatus orderStatus;
 
-    private ClientResponse client;
+    private CustomerResponse customer;
 
     public OrderResponse() {
     }
 
-    public OrderResponse(Long id, LocalDateTime moment, OrderStatus orderStatus, ClientResponse client) {
+    public OrderResponse(Long id, LocalDateTime moment, OrderStatus orderStatus, CustomerResponse customer) {
         this.id = id;
         this.moment = moment;
         this.orderStatus = orderStatus;
-        this.client = client;
+        this.customer = customer;
     }
 
     public Long getId() {
@@ -46,11 +46,11 @@ public class OrderResponse {
         this.orderStatus = orderStatus;
     }
 
-    public ClientResponse getClient() {
-        return client;
+    public CustomerResponse getCustomer() {
+        return customer;
     }
 
-    public void setClient(ClientResponse client) {
-        this.client = client;
+    public void setCustomer(CustomerResponse customer) {
+        this.customer = customer;
     }
 }

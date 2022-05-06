@@ -14,14 +14,14 @@ VALUES
     ('PC Gamer', 'Nam eleifend maximus tortor, at mollis', 4250.0),
     ('Rails for Dummies', 'Nam eleifend maximus tortor, at mollis', 100.99);
 
-INSERT INTO `TR_CLIENT`
+INSERT INTO `TR_CUSTOMER`
 	(`NAME`, `EMAIL`, `PHONE`, `PASSWORD`)
 VALUES
 	('Maria Brown', 'maria@gmail.com', '988880000', '123456'),
     ('Alex Green', 'alex@gmail.com', '977776666', '123456');
 
 INSERT INTO `TR_ORDER`
-	(`MOMENT`, `ORDER_STATUS`, `CLIENT_ID`)
+	(`MOMENT`, `ORDER_STATUS`, `CUSTOMER_ID`)
 VALUES
 	('2019-06-20 19:53:07', 2, 1),
     ('2019-07-21 03:42:10', 1, 2),

@@ -12,7 +12,7 @@ public class Order implements Serializable {
     private LocalDateTime moment;
     private OrderStatus orderStatus;
 
-    private Client client;
+    private Customer customer;
 
     public Order() {
     }
@@ -47,11 +47,11 @@ public class Order implements Serializable {
         this.orderStatus = orderStatus;
     }
 
-    public Client getClient() {
-        return client;
+    public Customer getCustomer() {
+        return customer;
     }
 
-    public void setClient(Client client) {
-        this.client = client;
+    public void setCustomer(Customer customer) {
+        this.customer = customer;
     }
 }
