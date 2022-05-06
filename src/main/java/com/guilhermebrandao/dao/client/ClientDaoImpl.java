@@ -9,17 +9,18 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataAccessException;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
+import org.springframework.jdbc.core.simple.SimpleJdbcInsert;
 import org.springframework.stereotype.Component;
 
 import java.sql.Types;
-import java.util.List;
-import java.util.Optional;
+import java.util.*;
 
 @Component
 public class ClientDaoImpl implements ClientDao {
     private static final Logger log = LoggerFactory.getLogger(ClientDaoImpl.class);
 
     private final JdbcTemplate jdbcTemplate;
+    private final SimpleJdbcInsert insertClient;
 
     RowMapper<Client> rowMapper = (rs, rowNum) -> {
         Client client = new Client();
@@ -34,6 +35,7 @@ public class ClientDaoImpl implements ClientDao {
     @Autowired
     public ClientDaoImpl(JdbcTemplate jdbcTemplate) {
         this.jdbcTemplate = jdbcTemplate;
+        this.insertClient = new SimpleJdbcInsert(jdbcTemplate).withTableName("TR_CLIENT").usingGeneratedKeyColumns("ID_CLIENT");
     }
 
     @Override
@@ -55,10 +57,16 @@ public class ClientDaoImpl implements ClientDao {
     }
 
     @Override
-    public void insert(Object obj) {
+    public Optional insert(Object obj) {
         Client client = (Client) obj;
-        String sql = "INSERT INTO TR_CLIENT (NAME, EMAIL, PHONE, PASSWORD) VALUES (?, ?, ?, ?)";
-        jdbcTemplate.update(sql, client.getName(), client.getEmail(), client.getPhone(), client.getPassword());
+
+        final Map<String, Object> parameters = new HashMap<>();
+        parameters.put("NAME", client.getName());
+        parameters.put("EMAIL", client.getEmail());
+        parameters.put("PHONE", client.getPhone());
+        parameters.put("PASSWORD", client.getPassword());
+        Long id = insertClient.executeAndReturnKey(parameters).longValue();
+        return findById(id);
     }
 
     @Override

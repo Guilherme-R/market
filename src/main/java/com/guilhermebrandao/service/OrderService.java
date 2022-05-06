@@ -30,7 +30,7 @@ public class OrderService {
         return new Order();
     }
 
-    public List<ClientResponse> findAll() {
+    public List<OrderResponse> findAll() {
         return new ArrayList<>();
     }
 
@@ -39,10 +39,11 @@ public class OrderService {
         return orders.stream().map(order -> orderMapper.toOrderResponse(order)).collect(Collectors.toList());
     }
 
-    public void insert(ClientPostRequestBody clientPostRequestBody) {
+    public OrderResponse insert() {
+        return new OrderResponse();
     }
 
-    public void update(ClientPutRequestBody clientPutRequestBody) {
+    public void update() {
     }
 
     public void delete(Long id) {

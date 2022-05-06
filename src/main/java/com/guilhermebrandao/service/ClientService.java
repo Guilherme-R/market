@@ -40,10 +40,11 @@ public class ClientService {
         return clientMapper.toClientResponse(client);
     }
 
-    public void insert(ClientPostRequestBody clientPostRequestBody) {
+    public ClientResponse insert(ClientPostRequestBody clientPostRequestBody) {
         Client client = clientMapper.toClient(clientPostRequestBody);
         PasswordValidator.validateClientPassword(client.getPassword());
-        clientDaoImpl.insert(client);
+        Client insertedClient = (Client) clientDaoImpl.insert(client).get();
+        return clientMapper.toClientResponse(insertedClient);
     }
 
     public void update(ClientPutRequestBody clientPutRequestBody) {

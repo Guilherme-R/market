@@ -33,26 +33,28 @@ public class ClientController {
     }
 
     @PostMapping(path = "/")
-    public ResponseEntity<Void> insert(@RequestBody ClientPostRequestBody clientPostRequestBody){
-        clientService.insert(clientPostRequestBody);
+    public ResponseEntity<ClientResponse> insert(@RequestBody ClientPostRequestBody clientPostRequestBody){
+        ClientResponse clientResponse = clientService.insert(clientPostRequestBody);
+        return ResponseEntity.ok().body(clientResponse);
+    }
+
+    @PutMapping(path = "/{id}")
+    public ResponseEntity<Void> update(@RequestBody ClientPutRequestBody clientPutRequestBody, @PathVariable Long id) {
+        clientPutRequestBody.setId(id);
+        clientService.update(clientPutRequestBody);
         return ResponseEntity.noContent().build();
     }
 
-    @PutMapping(path = "/")
-    public ResponseEntity<Void> update(@RequestBody ClientPutRequestBody clientPutRequestBody) {
-        clientService.update(clientPutRequestBody);
+    @PutMapping(path = "/{id}/new_password")
+    public ResponseEntity<Void> updatePassword(@RequestBody ClientPutRequestBody clientPutRequestBody, @PathVariable Long id) {
+        clientPutRequestBody.setId(id);
+        clientService.updatePassword(clientPutRequestBody);
         return ResponseEntity.noContent().build();
     }
 
     @DeleteMapping(path = "/{id}")
     public ResponseEntity<Void> delete(@PathVariable Long id) {
         clientService.delete(id);
-        return ResponseEntity.noContent().build();
-    }
-
-    @PutMapping(path = "/password")
-    public ResponseEntity<Void> updatePassword(@RequestBody ClientPutRequestBody clientPutRequestBody) {
-        clientService.updatePassword(clientPutRequestBody);
         return ResponseEntity.noContent().build();
     }
 }

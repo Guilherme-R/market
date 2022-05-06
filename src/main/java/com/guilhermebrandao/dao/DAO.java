@@ -7,7 +7,7 @@ public interface DAO<T> {
 
     Optional<T> findById(Long id);
     List<T> findAll();
-    void insert (T t);
+    Optional<T> insert (T t);
     void update (T t);
     void delete (Long id);
 }

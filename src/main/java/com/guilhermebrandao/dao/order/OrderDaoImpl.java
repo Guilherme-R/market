@@ -45,8 +45,8 @@ public class OrderDaoImpl implements OrderDao{
     }
 
     @Override
-    public void insert(Object o) {
-
+    public Optional insert(Object o) {
+        return Optional.empty();
     }
 
     @Override
