@@ -29,11 +29,11 @@ public class ResourceExceptionHandler {
     public ResponseEntity<StandardError> invalidPassword(InvalidPassword exception, HttpServletRequest request){
         HttpStatus status = HttpStatus.BAD_REQUEST;
         StandardError error = new StandardError(
-                System.currentTimeMillis(),
-                status.value(),
-                status.getReasonPhrase(),
-                exception.getMessage(),
-                request.getRequestURI());
+                                System.currentTimeMillis(),
+                                status.value(),
+                                status.getReasonPhrase(),
+                                exception.getMessage(),
+                                request.getRequestURI());
 
         return ResponseEntity.status(status).body(error);
     }

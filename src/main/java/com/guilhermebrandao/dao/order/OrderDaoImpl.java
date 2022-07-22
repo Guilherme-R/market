@@ -1,5 +1,6 @@
 package com.guilhermebrandao.dao.order;
 
+import com.guilhermebrandao.domain.Customer;
 import com.guilhermebrandao.domain.Order;
 import com.guilhermebrandao.domain.enums.OrderStatus;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -34,8 +35,9 @@ public class OrderDaoImpl implements OrderDao{
     }
 
     @Override
-    public List findAll() {
-        return null;
+    public List<Order> findAll() {
+        String sql = "SELECT * FROM TR_ORDER";
+        return jdbcTemplate.query(sql, rowMapper);
     }
 
     @Override

@@ -4,10 +4,10 @@ import com.guilhermebrandao.dao.order.OrderDaoImpl;
 import com.guilhermebrandao.domain.Order;
 import com.guilhermebrandao.mapper.OrderMapper;
 import com.guilhermebrandao.response.OrderResponse;
+import com.guilhermebrandao.response.OrderSummaryResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -27,8 +27,8 @@ public class OrderService {
         return new Order();
     }
 
-    public List<OrderResponse> findAll() {
-        return new ArrayList<>();
+    public List<OrderSummaryResponse> findAll() {
+        return orderDaoImpl.findAll().stream().map(order -> orderMapper.toOrderSummaryResponse(order)).collect(Collectors.toList());
     }
 
     public List<OrderResponse> findAllByClientId(Long clientId){

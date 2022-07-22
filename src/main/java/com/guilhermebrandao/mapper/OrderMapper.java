@@ -2,6 +2,7 @@ package com.guilhermebrandao.mapper;
 
 import com.guilhermebrandao.domain.Order;
 import com.guilhermebrandao.response.OrderResponse;
+import com.guilhermebrandao.response.OrderSummaryResponse;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 import org.mapstruct.factory.Mappers;
@@ -12,4 +13,6 @@ public interface OrderMapper {
 
     Order toOrder(OrderResponse orderResponse);
     OrderResponse toOrderResponse(Order order);
+
+    OrderSummaryResponse toOrderSummaryResponse(Order order);
 }
