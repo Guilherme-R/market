@@ -1,19 +1,18 @@
 package com.guilhermebrandao.service;
 
+import java.util.List;
+import java.util.stream.Collectors;
+
+import org.springframework.stereotype.Service;
+
 import com.guilhermebrandao.dao.customer.CustomerDaoImpl;
 import com.guilhermebrandao.dao.order.OrderDaoImpl;
 import com.guilhermebrandao.domain.Customer;
 import com.guilhermebrandao.infra.security.PasswordValidator;
-//import com.guilhermebrandao.mapper.Customer;
 import com.guilhermebrandao.mapper.CustomerMapper;
 import com.guilhermebrandao.request.CustomerPostRequestBody;
-import com.guilhermebrandao.response.CustomerResponse;
 import com.guilhermebrandao.request.CustomerPutRequestBody;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
-
-import java.util.List;
-import java.util.stream.Collectors;
+import com.guilhermebrandao.response.CustomerResponse;
 
 @Service
 public class CustomerService {
@@ -23,7 +22,6 @@ public class CustomerService {
 
     private final CustomerMapper customerMapper;
 
-    @Autowired
     public CustomerService(CustomerDaoImpl customerDaoImpl, CustomerMapper customerMapper, OrderDaoImpl orderDaoImpl){
         this.customerDaoImpl = customerDaoImpl;
         this.customerMapper = customerMapper;
